@@ -6,3 +6,4 @@ ghostscript
 epstool
 fig2dev
 pstoedit
+fonts-freefont-otf

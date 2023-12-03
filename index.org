@@ -14,4 +14,6 @@
     :END:  
 # y una introducción a la Probabilidad como extensión del Álgebra Lineal
 
+[[https://github.com/mbujosab/ISF2024][Repositorio]]
+
 #+INCLUDE: "README.org::* Preparación de presentación en el ISF 2024" :only-contents t 

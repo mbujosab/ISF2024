@@ -1,9 +1,11 @@
 * Preparación de presentación en el ISF 2024
 
+[[https://mbujosab.github.io/ISF2024/][web]]
+
 Aquí iré colocando el material
 
 - CET :: estimaciones
-  - [[file:./Notebooks/CET.ipynb][Notebook CET]]
+  - [[https://github.com/mbujosab/ISF2024/blob/master/Notebooks/CET.ipynb][Notebook CET]]
   - Para ejecutar el notebook en un navegador: [[https://mybinder.org/v2/gh/mbujosab/ISF2024/HEAD?labpath=Notebooks][file:Notebooks/images/badge_logo.svg]]
   - Notebook transformado en pdf [[file:./CET.pdf][CET.pdf]]
   - [[file:./Notebooks/CET2008/Climate01-screen.pdf][Presentación de 2008]]

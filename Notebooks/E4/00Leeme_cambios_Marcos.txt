@@ -1,0 +1,66 @@
+Con un script he realizado la sustitución de los siguientes comandos en todos los ficheros:
+
+str2mat --> char
+setstr  --> char
+
+Además, he comentado o sustituido otras lineas de varias funciones
+(al final de cada linea modificada he añadido "% MBB", para encontrarlas rápidamente)
+
+
+* sete4opt 
+
+  he quitado el signo "¿" en  
+
+  disp(['¿Variance or Cholesky factor?. . : ' s5]); 
+
+  y tambien en 
+
+  disp(['¿Variance or Cholesky factor?  . : ' upper(optval)]); 
+
+
+* plotccf.m
+* plotirf1.m
+* plotirf.m
+* plotperf.m
+* plotqqs.m
+* plotsers.m
+* uidents.m
+
+  he comentado las lineas con whitebg('w');
+
+* uidents.m
+
+  He sustituido 
+  
+   bar(vlag,acf(:,i),'k');
+
+  por
+
+   bar(vlag,acf(:,i));
+
+  (Por alguna razón en octave me daba error, y he supuesto que no era muy importante)
+  
+* prtest.m
+
+  octave no tiene la función rcond, pero la función det lo da como segundo argumento.
+
+  Solucion: he sustituido la linea
+
+    disp(sprintf('Reciprocal condition number = %8.4f', rcond));
+
+  por las siguientes    
+
+    if ~any(exist ('OCTAVE_VERSION')) %% MBB
+       disp(sprintf('Reciprocal condition number = %8.4f', rcond(corrm)));    
+    else
+       [d, rcond] = det (corrm);
+       disp(sprintf('Reciprocal condition number = %8.4f', rcond));
+    end                               %% MBB
+
+    
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Local Variables:
+mode: outline
+outline-regexp: " *\\*+"
+End:

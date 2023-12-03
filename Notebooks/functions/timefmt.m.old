@@ -1,0 +1,57 @@
+function timeaxis = timefmt (V)
+
+  ## usage:  timeaxis = timefmt (V)
+  ##
+  ## V > th efollowing vector with 4 elements: [P Y M N]
+  ## 
+  ##    where
+  ##      P: Seasonality (1 yearly, 4 quaterly, 12 monthly)
+  ##      Y: First year, ('1929')
+  ##      M: First month, ('3': march for monthly, autumn for quaterly)
+  ##      N: Number of dates
+  ## 
+  ## timeaxis < time axis vector
+  ##
+  ##    format: "year.period"; 1969.03 ~= march 1969 (if P=12)
+
+  N=V(4); M=V(3); Y=V(2); P=V(1);
+  if M>P; error('bad arguments'), end
+  if P==1			# annual data
+    digits=0; M=0;
+  else 
+    digits=(size(num2str(P),2));
+  end
+
+  mfy=min((P+1-M),N);		# months of the first year
+  nfcy=max(floor((N-mfy)/P),0);	# number of complete years
+  mly=rem((N-mfy)-P*nfcy,P);	# months of the last year
+  if nfcy
+    last_year=Y+nfcy+(rem((N-mfy)/nfcy,P)~=0);
+  else
+    last_year=Y+(mly>0);
+  end
+
+  timeaxis=zeros(N,1);
+
+  td=M;
+  for i=1:mfy
+    timeaxis(i)=Y*10^digits+td;
+    td=td+1;
+  end
+
+  CY=Y;
+  j=mfy+1;
+  if nfcy
+    for y=Y+1:Y+nfcy
+      for td=1:P
+	timeaxis(j)=y*10^digits+td;
+	j=j+1;
+      end
+      CY=y;
+    end
+  end
+
+  for td=1:mly
+    timeaxis(j-1+td)=(CY+1)*10^digits+td;
+    td=td+1;
+  end

@@ -1,0 +1,17 @@
+#+title:  Preparación presentación ISF2024
+#+author: Antonio García-Ferrer y Marcos Bujosa 
+#+email:  mbujosab@ucm.es
+#+LANGUAGE: es-es
+
+# ###########
+# ESTO DA EL FORMATO FINAL DE LA PÁGINA WEB VÉASE [[https://olmon.gitlab.io/org-themes/]]
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="worg.css" />
+# ##########
+
+* Preparación presentación ISF2024
+    :PROPERTIES:  
+    :UNNUMBERED: t
+    :END:  
+# y una introducción a la Probabilidad como extensión del Álgebra Lineal
+
+#+INCLUDE: "README.org::* Preparación de presentación en el ISF 2024" :only-contents t 

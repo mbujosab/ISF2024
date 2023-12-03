@@ -1,3 +1,3 @@
-* Preparación de presentación en el ISF 2024PracticasLDHR
+* Preparación de presentación en el ISF 2024
 
-Puede ejecutar los notebooks online desde  [[https://mybinder.org/v2/gh/mbujosab/PracticasLDHR/HEAD][file:images/badge_logo.svg]]
+Aquí iré colocando el material 

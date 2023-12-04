@@ -1,6 +1,0 @@
-
-He descargado los datos de [[https://www.metoffice.gov.uk/hadobs/hadcet/]]
-
-- datos: /monthly CET series data/ [[https://www.metoffice.gov.uk/hadobs/hadcet/data/meantemp_monthly_totals.txt][meantemp_monthly_totals.txt]]
-  
-- expicación formato del [[https://www.metoffice.gov.uk/hadobs/hadcet/data/data_format.html][aquí]]

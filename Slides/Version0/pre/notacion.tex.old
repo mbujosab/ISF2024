@@ -1,0 +1,630 @@
+\RequirePackage{color}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{xspace}
+\RequirePackage{amsfonts}
+\RequirePackage[mathscr]{eucal}
+\RequirePackage{amsxtra}
+%\RequirePackage{amsmath} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                NOTACION                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Muy generica (e inecesaria....)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\funcion}[2]{\ensuremath{{#1}_{#2}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Notación Matricial
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Notación para la matriz traspuesta
+%\newcommand{\T}{\prime} % Notaci^^f3n para la matriz traspuesta
+\newcommand{\T}{\textnormal{\!\tiny{T}\!\!}} 
+%% Matriz #1
+
+\RequirePackage{vector}
+
+%\RequirePackage{accents}
+\newcommand{\mat}[1]{\ensuremath{\boldsymbol{\svec{\MakeUppercase{#1}}}}\xspace} 
+%\newcommand{\mat}[1]{\ensuremath{\mathop{\boldsymbol{\mathbf{#1}}}}\xspace} 
+%\newcommand{\mat}[1]{\ensuremath{\boldsymbol{\mathbf{#1}}}\xspace} 
+
+%\newcommand{\vect}[1]{\ensuremath{\mathop{\boldsymbol{\bar{#1}}}}\xspace} 
+%\newcommand{\vect}[1]{\ensuremath{\mathop{\boldsymbol{\underline{#1}}}}}
+%\newcommand{\vect}[1]{\ensuremath{\mathop{\boldsymbol{\uvec{#1}}}}}
+\newcommand{\vect}[1]{\ensuremath{\boldsymbol{\uvec{\MakeLowercase{#1}}}}}
+%\newcommand{\vect}[1]{{\boldsymbol{\underaccent{\!-\!\triangleright}{#1}}}} %fila
+%\newcommand{\vect}[1]{{\boldsymbol{\accentset{-\!\triangleright}{#1}}}} %fila
+% conjugado
+\newcommand{\conj}[1]{\ensuremath{\accentset{\star}{#1}}\xspace} 
+%\newcommand{\conj}[1]{\ensuremath{\bar{#1}}\xspace} 
+
+
+\newcommand{\Mat}[1]{\ensuremath{{\mat{#1}}}\xspace} 
+ %% Matriz #1 de dimensiones #2 x #3
+\newcommand{\Vect}[1]{\ensuremath{{\vect{#1}}}\xspace} 
+%\newcommand{\Vect}[1]{\Mat{\MakeLowercase{#1}}} 
+
+%\newcommand{\VectF}[2][{}]{\ensuremath{{\vect{{#2}}_{#1_\triangleright}}}\xspace} 
+
+\newcommand{\VectF}[2][{}]{\ensuremath{{\vect{{#2}}_{#1_\triangleright}}}\xspace} 
+\newcommand{\VectC}[2][{}]{\ensuremath{\vect{{#2}\!}_{_{\blacktriangledown\!}#1}}\xspace} 
+
+%\newcommand{\VectC}[2]{\ensuremath{{\vect{{#1}_{_\blacktriangledown}}_{#2}}}\xspace} 
+
+
+%\newcommand{\VectCol}[2]{\ensuremath{{\vect{{#2}}_{{_\blacktriangledown}\!#1}}}\xspace} 
+\newcommand{\MVC}[3][{}]{\ensuremath{\Mat{#2}\VectC[#1]{#3}}\xspace}%MatVectColumna
+\newcommand{\VFM}[3][{}]{\ensuremath{\VectF[#1]{#2}\!\Mat{#3}}\xspace}%MatVectColumna
+
+%% Vector con sus dimensiones 1x1
+\newcommand{\dimensiones}[3]{\ensuremath{\mathop{#1}\limits_{[{\scriptscriptstyle #2\times #3}]}}\xspace}
+%\newcommand{\Vectdim}[3]{\ensuremath{\Mat{\MakeLowercase{#1}}\limits_{{[#2\times #3]}}\xspace}} 
+\newcommand{\Vectdim}[3]{\Dim{\Vect{#1}}{#2}{#3}} 
+%\newcommand{\Vectdim}[3]{\dimensiones{\vect{#1}}{#2}{#3}} 
+\newcommand{\VectTdim}[3]{\Dim{\VectT{#1}}{#2}{#3}} 
+%\newcommand{\VectTdim}[3]{\dimensiones{\vect{#1^\T}}{#2}{#3}} 
+\newcommand{\Dim}[3]{\dimensiones{#1}{#2}{#3}} 
+
+%\newcommand{\VectT}[1]{\ensuremath{{\Vect{#1}}^{\T}}\xspace} 
+\newcommand{\VectT}[1]{\ensuremath{{{\vect{#1}}^\T}}\xspace} 
+%% Matriz #1 de dimensiones #2 x #3
+%\newcommand{\Matdim}[3]{\ensuremath{\Mat{#1}\limits_{{[#2\times #3]}}\xspace}}
+\newcommand{\Matdim}[3]{\dimensiones{\mat{#1}}{#2}{#3}} 
+%% Escalar con sus dimensiones 1x1
+%\newcommand{\Escdim}[1]{\ensuremath{\mathop{#1}\limits_{[1\times1]}}\xspace}
+\newcommand{\Escdim}[1]{\dimensiones{\mathop{#1}}{1}{1}} 
+%% Matriz #1 traspuesta
+%\newcommand{\MatT}[1]{\ensuremath{{\Mat{#1}\!}^{\T}\,}\xspace} 
+\newcommand{\MatT}[1]{\ensuremath{{{\mat{#1}}^\T}\,}\xspace} 
+%% Matriz #1 traspuesta de dimensiones #2 x #3
+\newcommand{\MatTdim}[3]{\ensuremath{\mathop{\Matdim{#1^\T}{#2}{#3}}}\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Operaciones sobre matrices
+%\providecommand{\modulus}[1]{\ensuremath{\lvert#1\rvert}\xspace}  %MODULO
+\providecommand{\norma}[1]{\ensuremath{\lVert#1\rVert}\xspace}  %MODULO
+\newcommand{\modulus}[1]{\ensuremath{\left|#1\right|}\xspace}  %MODULO
+\newcommand{\determinante}[1]{\modulus{#1}}  %Determinante
+
+
+\DeclareMathOperator{\fila}{fila}
+\DeclareMathOperator{\columna}{col}
+
+\newcommand{\EV}[1]{\ensuremath{\mathcal{#1}}}
+\DeclareMathOperator{\EspacioNulo}{\EV{N}}
+\DeclareMathOperator{\EspacioColumna}{\EV{C}}
+\newcommand{\nulls}[1]{\ensuremath{\EspacioNulo\left({\Mat{#1}}\right)}\xspace}
+\newcommand{\cols}[1]{\ensuremath{\EspacioColumna\left({\Mat{#1}}\right)}\xspace}
+
+
+%\DeclareMathOperator{\traza}{traza}
+%\newcommand{\Traza}[1]{\ensuremath{\uniforme\left(#1,\ #2\right)}\xspace}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PROBABILIDAD
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% colores
+%\newcommand{\colestim}{blue}
+%\newcommand{\colorVA}{blue}
+%\newcommand{\coldeterm}{black}
+\newcommand{\colestim}{magenta}
+\newcommand{\colorVA}{magenta}
+\definecolor{MAGENTA}{rgb}{0.9,0,0.4} % magenta más o menos
+\definecolor{BLUE}{rgb}{0,0,1} % magenta más o menos
+
+%% espacio de probabilidad
+\newcommand{\ExpAleat}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\EspMuestral}{\ensuremath{S}\xspace}
+\newcommand{\EspSucesos}{\ensuremath{\mathfrak{B}}\xspace}
+\newcommand{\probspace}{\ensuremath{(\EspMuestral,\EspSucesos,\Prb{\cdot})}\xspace}
+\newcommand{\Ensayo}{\ensuremath{\mathcal{A}}\xspace}
+
+%%% COND !!!!!!!!!
+\newcommand{\cOND}[2]{\ensuremath{\left.{#1}\,\right|\left.#2\!\right.}\xspace}
+\newcommand{\coND}[2]{\ensuremath{\left.\left(\!\cOND{#1}{#2}\!\right.\right)}\xspace}
+\newcommand{\Cnd}[2]{\funcion{#1}{|#2}}
+\newcommand{\CnD}[2]{\COND{#1}{#2}}
+
+\newcommand{\PVEstmdCnd}[2]{\ensuremath{\left(\VEstmdCnd{#1}{#2}\right)}\xspace}
+\newcommand{\PEstmdCnd}[2]{\ensuremath{\left(\VEstmdCnd{#1}{#2}\right)}\xspace}
+
+
+%% leyes de probabilidad
+\newcommand{\probab}{{P}}
+\newcommand{\Prb}[1]{\ensuremath{\probab\left(#1\right)}\xspace}
+\newcommand{\PrbMg}[2]{
+  \ensuremath{{\probab}_{\VA{#1}}\left(\VA{#1}=\MakeLowercase{#1}_{#2}\right)}\xspace}
+\newcommand{\Prbcond}[2]{\Prb{\cOND{#1}{#2}}}
+
+\newcommand{\PrbH}[2]{\ensuremath{{\probab}_{\tiny #2}\left(#1\right)}\xspace}
+%\newcommand{\PrbH}[2]{\ensuremath{{\probab}\left(#1\|#2\right)}\xspace}
+%\newcommand{\PrbH}[2]{\ensuremath{{\probab}\left(#1\right)_{\tiny #2}}\xspace}
+
+\newcommand{\funDist}{{F}}
+\newcommand{\funDens}{{\MakeLowercase{\funDist}}}
+
+%% variable aleatoria
+\newcommand{\VAn}[2]{\ensuremath{{\color{\colorVA}{\MakeUppercase{#1}_{#2}}}}\xspace}
+\newcommand{\VA}[1]{{\VAn{#1}{}}}
+
+\newcommand{\soporte}[2]{\ensuremath{\mathbb{#1}_{\scriptscriptstyle\color{\colorVA}{#2}}}\xspace}
+\newcommand{\soporten}[3]{\ensuremath{\mathbb{#1}^{#3}_{\scriptscriptstyle\color{\colorVA}{#2}}}\xspace}
+
+
+%% NOTACIÓN GENÉRICA PARA LEY DE PROBABILIDAD Y OPERADORES
+\newcommand{\Leyx}[3]{\ensuremath{{#3}_{\!\;\scriptscriptstyle{\color{\colorVA}{#1}} }\!\!\: \left( #2 \right)}\xspace}
+\newcommand{\Ley}[2]{\Leyx{}{#1}{#2}}
+\newcommand{\leycond}[3]{\Ley{\cOND{#1}{#2}}{#3}}
+\newcommand{\LeyCond}[3]{{\color{\colorVA}{\leycond{\!#1}{\!#2}{#3}}}}
+\newcommand{\LeyconD}[4]{\LeycoND{#1}{#1}{#2}{#3}{#4}}
+\newcommand{\LeyconDc}[5]{\LeycoND{#1}{#2}{#3}{#4}{#5}}
+\newcommand{\Leycond}[3]{\LeyconD{#1}{#2}{#2}{#3}}
+\newcommand{\LeYCx}[5]{\ensuremath{{#5}\left({#1}{#2}{#3}{#4}\right)}\xspace}
+\newcommand{\LEYCX}[5]{\LeYcX{#1}{#3}{#2}{#4}{#5}}
+\newcommand{\LeYc}[3]{\LeYcx{#1}{#2}{#3}}
+\newcommand{\LeYC}[5]{\LEYCX{#1}{#3}{#2}{#4}{#5}}
+%Condicion en minisculas
+%\newcommand{\LeYcoNDc}[5]{\LeycoND{#1}{\VA{#1}=\MakeLowercase{#2}}{#3}{#4}{#5}}
+
+
+\newcommand{\COND}[2]{\ensuremath{\left.{#1}\right|\!\!\left.#2\!\right.}\xspace}
+%\newcommand{\COND}[2]{\ensuremath{{#1}}\xspace}
+%\newcommand{\Parentesis}[1]{\ensuremath{\left(\!{#1}\right)}\xspace}
+\newcommand{\Parentesis}[1]{\ensuremath{{#1}}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% NOTACIÓN NOVALES %%%%%%%%%%
+%% |X=x
+%\newcommand{\LeYcoNDc}[5]{\LeycoND{#1}{\VA{#1}={#2}}{#3}{#4}{#5}}
+%\newcommand{\LeYcX}[5]{\LeYCx{\VA{#1}}{=#2}{\,,\VA{#3}}{=#4}{#5}}
+%\newcommand{\LeYcx}[3]{\LeYCx{\,\VA{#1}}{=#2}{}{}{#3}}
+%\newcommand{\LeycoND}[5]{\leycond{#2}{\scriptstyle{\VA{#3}={#4}}}{#5}}
+%% Condicion en minisculas
+%\newcommand{\LeycoND}[5]{\leycond{#2}{\scriptstyle{\VA{#3}=\MakeLowercase{#4}}}{#5}}
+
+%%%%%%%%%%%%%%%%%%% NOTACIÓN A LA HAYASHI (HYPERCOMPACTA) %%%%%%%%%%
+% |x
+\newcommand{\LeYcoNDc}[5]{\LeycoND{#1}{{#2}}{#3}{#4}{#5}}
+\newcommand{\LeYcX}[5]{\LeYCx{\VA{#1}}{=#2}{\,,\VA{#3}}{=#4}{#5}}
+\newcommand{\LeYcx}[3]{\LeYCx{\,\VA{#1}}{=#2}{}{}{#3}}
+\newcommand{\LeycoND}[5]{\leycond{#2}{{#4}}{#5}}
+\renewcommand{\Leyx}[3]{\ensuremath{{#3}\!\!\:\left( #2 \right)}\xspace}
+%% Condicion en minisculas
+%\newcommand{\LeycoND}[5]{\leycond{#2}{\scriptstyle{\VA{#3}=\MakeLowercase{#4}}}{#5}}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%% NOTACIÓN ALTERNATIVA (extensa) %%%%%%%%%%
+% \newcommand{\LeYcoNDc}[5]{\LeycoND{#1}{\MakeLowercase{#2}}{#3}{#4}{#5}}
+% \newcommand{\LeYcX}[5]{\Leyx{\!#1\!#3}{#2,#4}{#5}}
+% \newcommand{\LeYcx}[3]{\Leyx{#1}{#2}{#3}}
+% \newcommand{\LeycoND}[5]{\Leyx{{#1\!|\!#3}}{\cOND{#2}{{#4}}}{#5}}
+% \newcommand{\LeyCoND}[3]{{\leyCond{#1}{#2}{#3}}}
+%% Condicion en minisculas
+%\newcommand{\LeycoND}[5]{\Leyx{#1\!|\!#3}{\cOND{#2}{\MakeLowercase{#4}}}{#5}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% F. DISTRIB %%%%%%%%%%
+\newcommand{\FdPx}[2]   {\Leyx{\!#1}{#2}{\funDist}}
+\newcommand{\FdP}[2]    {\Leyx{\!#1}{#2}{\funDist}}
+\newcommand{\Fdp}[1]    {\Leyx{\!#1}{\MakeLowercase{#1}}{\funDist}}
+\newcommand{\FdpC}[4]   {\Leyx{\!#1\!#3}{#2,#4}{\funDist}}
+\newcommand{\Fdpc}[2]   {\Leyx{\!#1\!#2}{\MakeLowercase{#1,#2}}{\funDist}}
+\newcommand{\FdpcoND}[4]{\LeycoND{\!\!\;#1}{#2}{#3}{#4}{\funDist}}
+\newcommand{\FdpconD}[3]{\LeycoND{\!\!\;\VA{#1}}{\MakeLowercase{#1}}{\VA{#2}}{#3}{\funDist}}
+\newcommand{\Fdpcond}[2]{\fdpconD{\!\!\;#1}{\VA{#2}}{\MakeLowercase{#2}}}
+\newcommand{\Fdppar}[1]{\FdP{#1}{\MakeLowercase{#1};\Mat{\theta}}}% func. densid. paramet
+\newcommand{\FdpCpar}[4]{\FdP{#1#3}{#2,#4;{\pmb{\theta}}}}
+\newcommand{\Fdpcpar}[2]{\FdpCpar{#1}{\MakeLowercase{#1}}{#2}{\MakeLowercase{#2}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% F. DENSIDAD %%%%%%%%%%
+\newcommand{\fdPx}[2]   {\Leyx{\!\!\!\;#1}{#2}{\funDens}}
+\newcommand{\fdP}[2]    {\Leyx{\!\!\!\;\MakeUppercase{#1}}{#2}{\funDens}}
+\newcommand{\fdp}[1]    {\Leyx{\!\!\!\;\MakeUppercase{#1}}{\MakeLowercase{#1}}{\funDens}}
+\newcommand{\fdpC}[4]   {\Leyx{\!\!\!\;#1\!#3}{#2,#4}{\funDens}}
+\newcommand{\fdpc}[2]   {\Leyx{\!\!\!\;\MakeUppercase{#1\!#2}}{\MakeLowercase{#1,#2}}{\funDens}}
+\newcommand{\fdpcoND}[4]{\LeycoND{\!\!\;#1}{#2}{#3}{#4}{\funDens}}
+\newcommand{\fdpconD}[3]{\LeycoND{\!\!\;\VA{#1}}{\MakeLowercase{#1}}{\VA{#2}}{#3}{\funDens}}
+\newcommand{\fdpcond}[2]{\fdpconD{\!\!\;#1}{\VA{#2}}{\MakeLowercase{#2}}}
+\newcommand{\fdppar}[1]{\fdP{#1}{\MakeLowercase{#1};\Mat{\theta}}}%func. densid. paramet
+\newcommand{\fdpCpar}[4]{\fdP{\!\!\!\;#1\!#3}{#2,#4;{\pmb{\theta}}}}
+\newcommand{\fdpcpar}[2]{\fdpCpar{#1}{\MakeLowercase{#1}}{#2}{\MakeLowercase{#2}}}
+
+\newcommand{\fv}[1]{\fdP{#1}{\cOND{\Vect{\theta}}{#1}}}%func. de verosimilitud
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% F. CUANTÍA %%%%%%%%%%
+\newcommand{\fcuanx}[2]   {\LeYc{\!\!\;\MakeUppercase{#1}}{#2}{\probab}}
+\newcommand{\fcuaN}[2]    {\LeYc{\!\!\;\MakeUppercase{#1}}{#2}{\probab}}
+\newcommand{\fcuan}[1]    {\LeYc{\!\!\;\MakeUppercase{#1}}{\MakeLowercase{#1}}{\probab}}
+\newcommand{\fcuanC}[4]   {\LeYC{\!\!\;#1}{#2}{#3}{#4}{\probab}}
+\newcommand{\fcuanc}[2]   {\LeYC{\!\!\;\MakeUppercase{#1}}{\MakeLowercase{#1}}{\MakeUppercase{#2}}{\MakeLowercase{#2}}{\probab}}
+\newcommand{\fcuancoND}[4]{\LeYcoNDc{\!\!\;\VA{#1}}{#2}{#3}{#4}{\probab}}
+\newcommand{\fcuanconD}[3]{\LeYcoNDc{\!\!\;\VA{#1}}{#1}{\VA{#2}}{#3}{\probab}}
+\newcommand{\fcuanpar}[1] {\fcuaN{#1}{\MakeLowercase{#1};\Mat{\theta}}}
+\newcommand{\fcuancond}[2]{\fcuanconD{#1}{\VA{#2}}{\MakeLowercase{#2}}     }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% FAMILIA DE DISTRIBUCIONES
+\DeclareMathOperator{\uniforme}{Uniforme}
+\newcommand{\Uniforme}[2]{\ensuremath{\uniforme\left(#1,\ #2\right)}\xspace}
+\DeclareMathOperator{\binomial}{Binomial}
+\newcommand{\Binomial}[2]{\ensuremath{\binomial\left(#1,\ #2\right)}\xspace}
+\DeclareMathOperator{\bernulli}{Bernulli}
+\newcommand{\Bernulli}[1]{\ensuremath{\bernulli\left(#1\right)}\xspace}
+\DeclareMathOperator{\poisson}{Poisson}
+\newcommand{\Poisson}[1]{\ensuremath{\poisson\left(#1\right)}\xspace}
+%\DeclareMathOperator{\normal}{Normal}
+\DeclareMathOperator{\normal}{N\/}%{\it N\/}
+\newcommand{\Normal}[2]{\ensuremath{\normal\left(#1\,,\,#2\right)}\xspace}
+%\DeclareMathOperator{\tstudent}{\emph{t}-Student}
+\DeclareMathOperator{\tstudent}{\it t\/}
+\newcommand{\TStudent}[1]{\ensuremath{\tstudent_{#1}}\xspace}
+\DeclareMathOperator{\fsnedecor}{\it F\/}
+\newcommand{\FSnedecor}[2]{\ensuremath{\fsnedecor_{#1,#2}}\xspace}
+
+
+%% vbles #1 idep. e idénticamente distribuidas N(#2,#3) 
+\newcommand{\iidNmv}[3]{\ensuremath{{#1}\sim\textrm{iid. }\Normal{#2}{#3}}\xspace}
+%% vbles #1 idep. e idénticamente distribuidas N(\mu,sigma^2) 
+\newcommand{\iidN}[1]{\iidNmv{#1}{\mu}{\sigma^2}}
+
+
+%% Límite en probabilidad
+\newcommand{\plim}{\ensuremath{\textrm{\ plim }}\xspace}
+%% Varianza asintótica
+\newcommand{\VarA}[1]{\ensuremath{\textrm{Var A}\left[{#1}\right]}\xspace}
+%% distribución asintótica
+\newcommand{\asim}{\mathop{\sim}\limits^a}
+\newcommand{\simHnula}{\mathop{\sim}\limits_{\Hnula}}
+\newcommand{\asimHnula}{\mathop{\sim}\limits_{\Hnula}^a}
+% convergencia en distribución
+\DeclareMathOperator{\distribucion}{d}
+\newcommand{\ConvergenciaDist}{\ensuremath{\mathop{\rightarrow}\limits^{\distribucion}}\xspace}
+
+
+%% MOMENTOS 
+\DeclareMathOperator{\esperanza}{E}
+\DeclareMathOperator{\mediana}{Me}
+\DeclareMathOperator{\varianza}{Var}
+\DeclareMathOperator{\covarianza}{Cov}
+\DeclareMathOperator{\correlacion}{Corr}
+\DeclareMathOperator{\DesviacionTipica}{Dt}
+
+%% MOMENTOS  MUESTRALES
+\newcommand{\Correlacion}{r}
+\newcommand{\Covarianza}{s}
+\newcommand{\Varianza}{\Covarianza}
+
+%%%%%%%%%% ESPERANZA
+\newcommand{\Ex}[2]{\Leyx{\VA{#1}}{#2}{\esperanza}}
+\newcommand{\E}[1]{\Ley{#1}{\esperanza}}
+\newcommand{\econd}[2]{\leycond{#1}{#2}{\esperanza}}
+\newcommand{\ECond}[2]{\LeyCond{#1}{#2}{\esperanza}}
+\newcommand{\EcoND}[4]{\LeycoND{#1}{#2}{#3}{#4}{\esperanza}}
+\newcommand{\EconD}[3]{\LeycoND{#1}{#1}{\VA{#2}}{#3}{\esperanza}}
+\newcommand{\Econd}[2]{\LeyconD{#1}{\VA{#2}}{\MakeLowercase{#2}}{\esperanza}}
+
+%%%%%%%%%% VARIANZA
+\newcommand{\Varx}[2]{\Leyx{\VA{#1}}{#2}{\varianza}}
+\newcommand{\Var}[1]{\Ley{#1}{\varianza}}
+\newcommand{\varcond}[2]{\leycond{#1}{#2}{\varianza}}
+\newcommand{\VarCond}[2]{\LeyCond{#1}{#2}{\varianza}}
+\newcommand{\VarcoND}[4]{\LeycoND{#1}{#2}{#3}{#4}{\varianza}}
+\newcommand{\VarconD}[3]{\LeycoND{#1}{#1}{\VA{#2}}{#3}{\varianza}}
+\newcommand{\Varcond}[2]{\LeyconD{#1}{\VA{#2}}{\MakeLowercase{#2}}{\varianza}}
+%%%%%%%%%% DESVIACIÓN TÍPICA
+\newcommand{\Dtx}[2]{\Leyx{\VA{#1}}{#2}{\DesviacionTipica}}
+\newcommand{\Dt}[1]{\Ley{#1}{\DesviacionTipica}}
+\newcommand{\dtcond}[2]{\leycond{#1}{#2}{\DesviacionTipica}}
+\newcommand{\DtCond}[2]{\LeyCond{#1}{#2}{\DesviacionTipica}}
+\newcommand{\DtcoND}[4]{\LeycoND{#1}{#2}{#3}{#4}{\DesviacionTipica}}
+\newcommand{\DtconD}[3]{\LeycoND{#1}{#1}{\VA{#2}}{#3}{\DesviacionTipica}}
+\newcommand{\Dtcond}[2]{\LeyconD{#1}{\VA{#2}}{#2}{\DesviacionTipica}}
+
+\newcommand{\MVAR}[1]{\ensuremath{{\Mat{\Sigma}}_{#1}}\xspace}
+\newcommand{\MVARM}[1]{\ensuremath{\Mat{{\MakeUppercase\Varianza}^2_{\!\scriptscriptstyle{#1}}}}\xspace}
+% \newcommand{\VAR}[1]{\ensuremath{\sigma^2_{\!\scriptscriptstyle\VA{#1}}}\xspace}
+% \newcommand{\DT}[1]{\ensuremath{\sigma_{\!\scriptscriptstyle\VA{#1}}}\xspace}
+% \newcommand{\ESP}[1]{\ensuremath{\mu_{\!\scriptscriptstyle\VA{#1}}}\xspace}
+\newcommand{\VAR}[1]{\ensuremath{\sigma^2_{\!\scriptscriptstyle{#1}}}\xspace}
+\newcommand{\DT}[1]{\ensuremath{\sigma_{\!\scriptscriptstyle{#1}}}\xspace}
+\newcommand{\ESP}[1]{\ensuremath{\mu_{\!\scriptscriptstyle{#1}}}\xspace}
+
+
+%%%%%%%%%% COVARIANZAS
+\newcommand{\Covx}[3]{\Leyx{#1,#2}{#2}{\covarianza}}
+\newcommand{\Cov}[2]{\Ley{#1,#2}{\covarianza}}
+\newcommand{\CovconD}[4]{\LeycoND{#1#2}{#1,#2}{\VA{#3}}{#4}{\covarianza}}
+\newcommand{\Covcond}[3]{\LeyconDc{#1#2}{#1,#2}{\VA{#3}}{#3}{\covarianza}}
+\newcommand{\CovcoND}[6]{\LeycoND{#1#3}{#2,#4}{#5}{#6}{\covarianza}}
+%\newcommand{\CovcoND}[6]{\LeycoND{#1}{#2,#4}{#3}{#5}{\covarianza}}
+
+%\newcommand{\COV}[2]{\ensuremath{\sigma_{\!\scriptscriptstyle\VA{#1\!#2}}}\xspace}
+\newcommand{\COV}[2]{\ensuremath{\sigma_{\!\scriptscriptstyle{#1\!#2}}}\xspace}
+\newcommand{\VCOV}[2]{\ensuremath{\Vect{\sigma_{\!\scriptscriptstyle{#1\!#2}}}}\xspace}
+\newcommand{\VCOVM}[2]{\ensuremath{\Vect{{\MakeUppercase\Varianza}_{\!\scriptscriptstyle{#1\!#2}}}}\xspace}
+%\newcommand{\VTCOV}[2]{\ensuremath{\Vect{\sigma}^\T_{\!\scriptscriptstyle{#1\!#2}}}\xspace}
+
+\newcommand{\Corr}[2]{\ensuremath{\correlacion\left(#1,#2\right)}\xspace}
+%\newcommand{\CORR}[2]{\ensuremath{\rho_{\!\scriptscriptstyle\VA{#1\!#2}}}\xspace}
+\newcommand{\CORR}[2]{\ensuremath{\rho_{\!\scriptscriptstyle{#1\!#2}}}\xspace}
+\newcommand{\CORRM}[2]{\ensuremath{r_{\!\scriptscriptstyle{#1\!#2}}}\xspace}
+
+% correlación parcial muestral
+%\newcommand{\CORRPM}[3]{\ensuremath{r_{\!\scriptscriptstyle{\ORT{#1}{#3}\!\ORT{#2}{#3}}}}\xspace}
+\newcommand{\CORRPM}[3]{\ensuremath{r_{\!\scriptscriptstyle{\ORT{(#1,#2)}{#3}}}}\xspace}
+
+%%%%%%%%%%%%%%%%%% ESTADISTICA
+
+%\newcommand{\Estad}[1]{\ensuremath{{\color{\colestim}{#1}}}\xspace}
+
+%% estadístico #1 función de #2
+\newcommand{\Estd}[2]{\funcion{#1}{#2}}  % probablemente innecesario
+%\newcommand{\estadistico}[2]{\Estd{{\color{\colestim}{#1}}}{\left(#2\right)}}
+%\newcommand{\estadistico}[1]{\ensuremath{\widehat{\mbox{\color{\colestim}{\Estd{#1}{}}}}}\xspace}
+\newcommand{\estadistico}[2]{\ensuremath{{{\color{\colestim}{{#1}{(#2)}}}}}\xspace}
+
+%% Estimador #1 que es función de #2     % probablemente innecesario
+\newcommand{\Estm}[2]{\Estd{{\color{\colestim}{#1}}}{#2}} 
+
+%% Estimador #1 
+\newcommand{\Estmd}[1]{\Estm{\widehat{#1}}{}}
+%% Estimación de #1 
+\newcommand{\Estmc}[1]{\Estd{\widehat{#1}}{}} 
+%% Estimador #1 condicionado #2
+\newcommand{\Estmdcond}[2]{\widehat{\Estm{#1}{|#2}}}
+
+
+%\newcommand{\VEstmdCnd}[2]{\COND{\color{\colestim}{\Vect{\widehat{#1}}}}{#2}}
+%\newcommand{\EstmdCnd}[2]{\COND{\color{\colestim}{\widehat{#1}}}{#2}}
+\newcommand{\EstmdCnd}[2]{\Estm{\widehat{#1}}{|#2}}
+\newcommand{\VEstmdCnd}[2]{\Estm{\Vect{\widehat{#1}}}{|#2}}
+
+
+\newcommand{\VEstmdCndP}[2]{\Parentesis{{\VEstmdCnd{#1}{#2}}}}
+\newcommand{\EstmdCndP}[2]{\Parentesis{{\EstmdCnd{#1}{#2}}}}
+%% PARA SUSTITUIR 
+%\cOND{\Vect{\Estmd{\beta}}}{\Mat{X}} 
+%% POR
+%\VEstmdCnd{\beta}{\Mat{X}
+%\EstmdVar{\VEstmdCnd{\beta}{\Mat{X}}}
+
+
+
+%% Media aritmética o media muestral
+\newcommand{\media}[1]{\ensuremath{\overline{#1}}\xspace}
+%% varianza muestral
+\newcommand{\VarM}[1]{\ensuremath{\Varianza^2_{#1}}\xspace}
+%% varianza muestral
+\newcommand{\DTM}[1]{\ensuremath{\Varianza_{#1}}\xspace}
+%% Covarianza muestral
+\newcommand{\CovM}[2]{\ensuremath{\Covarianza_{#1#2}}\xspace}
+%% Correlación muestral
+\newcommand{\CorM}[2]{\ensuremath{\Correlacion_{#1#2}}\xspace}
+%% cuasi-varianza muestral
+\newcommand{\CVarM}[1]{\ensuremath{\mathfrak{s}^2_{#1}}\xspace}
+
+\newcommand{\CVarMd}[1]{\Estmd{\CVarM{#1}}}
+
+
+%% Estimador de la matriz de covarianzas de #1 que depende de #2
+\newcommand{\EstmMedia}[2]{\ensuremath{\Estm{\media{#1}}{#2}}\xspace} 
+%% Estimador de la matriz de covarianzas de #1 que depende de #2
+\newcommand{\EstmVAR}[2]{\ensuremath{\Estm{\VAR{#1}}{#2}}\xspace} 
+%% Estimador de la desviación típica (matriz) de #1 que depende de #2
+\newcommand{\EstmDT}[2]{\ensuremath{\EstmVAR{#1}{#2}^{\frac{1}{2}}}\xspace}
+
+
+\newcommand{\EstmdDt}[1]{\ensuremath{\Ley{#1}{\color{\colestim}{\widehat{\DesviacionTipica}}}}\xspace}
+\newcommand{\EstmdVar}[1]{\ensuremath{\Ley{#1}{\color{\colestim}{\widehat{\varianza}}}}\xspace}
+\newcommand{\EstmdCov}[2]{\ensuremath{\Ley{#1,#2}{\color{\colestim}{\widehat{\covarianza}}}}\xspace}
+
+\newcommand{\EstmcDt}[1]{\ensuremath{\Ley{#1}{\widehat{\DesviacionTipica}}}\xspace}
+\newcommand{\EstmcVar}[1]{\ensuremath{\Ley{#1}{\widehat{\varianza}}}\xspace}
+\newcommand{\EstmcCov}[2]{\ensuremath{\Ley{#1,#2}{\widehat{\covarianza}}}\xspace}
+
+
+%%%% contrastación de hipótesis
+\newcommand{\Hnula}{\ensuremath{H_0}\xspace}
+\newcommand{\Halt}{\ensuremath{H_1}\xspace}
+\newcommand{\Rcritica}{\ensuremath{RC}\xspace}
+\newcommand{\Racept}{\ensuremath{RA}\xspace}
+\newcommand{\simnula}{\mathop{\sim}\limits_{\Hnula}}
+\newcommand{\asimnula}{\mathop{\sim}\limits^{a}_{\Hnula}}
+
+\newcommand{\testad}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\testadistico}{\ensuremath{{\Estmc{\testad}}}\xspace}
+\newcommand{\Testadistico}{\ensuremath{{\Estm{\testad}{}}}\xspace}
+
+\newcommand{\festad}{\ensuremath{\mathcal{F}}\xspace}
+\newcommand{\festadistico}{\ensuremath{{\Estmc{\festad}}}\xspace}
+\newcommand{\Festadistico}{\ensuremath{{\Estm{\festad}{}}}\xspace}
+
+\newcommand{\IC}[3]{\ensuremath{\text{IC}_{#1}^{#2}(#3)}\xspace}
+
+%%%%%%%%%%%%%%%%%% REGRESION
+\newcommand{\ruido}{\per}
+%\newcommand{\perturbacion}{{\ensuremath{\epsilon}}\xspace}
+\newcommand{\perturbacion}{\ensuremath{u}\xspace}
+\newcommand{\per}{\VA{\perturbacion}}
+\newcommand{\peri}[1]{\VAn{\perturbacion}{#1}}
+
+%% Notación para el regresor (MATRIZ)
+\newcommand{\X}{x}
+
+%% Con subíndices
+\newcommand{\x}[1]{{\ensuremath{\X_{#1}}}\xspace}
+\newcommand{\xk}{{\ensuremath{\X_{k}}}\xspace}
+\newcommand{\Beta}[1]{{\ensuremath{\beta_{#1}}}\xspace}
+\newcommand{\Betak}{{\ensuremath{\beta_{k}}}\xspace}
+
+\newcommand{\DM}[1]{{\ensuremath{\ddot{#1}}}\xspace}
+\newcommand{\ORT}[2]{{\ensuremath{{#1}_{\scriptscriptstyle \!\!_\bot\!\!\!\Mat{#2}\!}}}\xspace}
+\newcommand{\NORT}[2]{{\ensuremath{{#1}_{\scriptscriptstyle \!\subset\!\!\Mat{#2}\!}}}\xspace}
+
+%% Notación para el regresando (Vector)
+\newcommand{\Y}{y}
+%\newcommand{\Y}{\ensuremath{y}\xspace} % Notaci^^f3n para el regresando
+
+%% término de error o innovación
+\newcommand{\error}{e}
+
+%% residuo o estimación del termino de error
+\newcommand{\resc}{\ensuremath{{\Estmc{\error}}}\xspace}
+\newcommand{\resic}[1]{\ensuremath{\Estmc{{\error}_{#1}}}\xspace}
+%% residuo o estimación del termino de error
+\newcommand{\resd}{\ensuremath{{\Estm{\res}{}}}\xspace}
+\newcommand{\resid}[1]{\ensuremath{\Estm{{\error}_{#1}}{}}\xspace}
+
+\newcommand{\res}{\resc}
+\newcommand{\resi}[1]{\resic{#1}}
+
+%% ESTIMADORES Y ESTIMACIONES (NOTACIÓN)
+
+%% Estimador de la varianza de #1 que depende del regresando
+\newcommand{\EstmdVAR}[1]{\EstmVAR{#1}{\Mat{\Y}}}
+%% Estimador de la desviación típica de #1 que depende del regresando
+\newcommand{\EstmdDT}[1]{\EstmDT{#1}{\Mat{\Y}}} 
+
+%% Estimacion de la varianza de #1 
+\newcommand{\EstmcVAR}[1]{\EstmVAR{#1}{}}
+%% Estimacion de la desviación típica de #1  
+\newcommand{\EstmcDT}[1]{\EstmDT{#1}{}} 
+
+%% Estimador MCO de beta
+\newcommand{\EstmdMCO}{\Vect{\Estmd{\beta}}}
+%% Estimación MCO de beta
+\newcommand{\EstmcMCO}{\Vect{\Estmc{\beta}}}
+%% Estimador MCO de beta modificado (^#1}
+\newcommand{\EstmdMCOm}[1]{\Vect{\Estmd{\beta^{#1}}}\xspace}
+%% Estimación MCO de beta modificado (^#1}
+\newcommand{\EstmcMCOm}[1]{\Vect{\Estmc{\beta^{#1}}}\xspace}
+
+%% Estimador MCO de la varianza (sigma^2) 
+\newcommand{\EstmdMCOVAR}{\ensuremath{\Estmd{\sigma^{2}}}\xspace}
+%% Estimación MCO de la varianza (sigma^2) 
+\newcommand{\EstmcMCOVAR}{\ensuremath{\Estmc{\sigma^{2}}}\xspace}
+
+%% Estimador MCO de la desviación típica (sigma) 
+\newcommand{\EstmdMCODT}{\Estmd{\sigma}}
+%% Estimación MCO de la desviación típica (sigma) 
+\newcommand{\EstmcMCODT}{\Estmc{\sigma}}
+
+
+%% OPERACIONES CON MATRICES
+
+\DeclareMathOperator{\Traza}{traza}
+\DeclareMathOperator{\Rango}{rango}
+
+\newcommand{\rango}[1]{\ensuremath{\Rango\left(#1\right)}\xspace}  
+\newcommand{\traza}[1]{\ensuremath{\Traza\left(#1\right)}\xspace}  
+
+\newcommand{\MN}[2]{\ensuremath{\Mat{#1}\Mat{#2}}\xspace}
+\newcommand{\MTN}[2]{\ensuremath{\MatT{#1}\Mat{#2}}\xspace}
+\newcommand{\MTNT}[2]{\ensuremath{\MatT{#1}\MatT{#2}}\xspace}
+\newcommand{\MTM}[1]{\MTN{#1}{#1}}
+\newcommand{\MNT}[2]{\ensuremath{\Mat{#1}\MatT{#2}}\xspace}
+\newcommand{\MMT}[1]{\ensuremath{\MNT{#1}{#1}}\xspace}
+
+%% OPERACIONES CON VECTORES
+\newcommand{\ViTWj}[4]{\ensuremath{{\Vect{#1}_{#2}}^{\T}\Vect{#3}_{#4}}\xspace}
+
+\newcommand{\VTW}[2]{\ViTWj{#1}{}{#2}{}}
+%\newcommand{\VTW}[2]{\ensuremath{\VectT{#1}\,\Vect{#2}}\xspace}
+\newcommand{\VTWT}[2]{\ensuremath{\VectT{#1}\VectT{#2}}\xspace}
+\newcommand{\VTV}[1]{\VTW{#1}{#1}}
+\newcommand{\VWT}[2]{\ensuremath{\Vect{#1}\VectT{#2}}\xspace}
+\newcommand{\VVT}[1]{\ensuremath{\VWT{#1}{#1}}\xspace}
+
+%% OPERACIONES CON MATRICES Y VECTORES
+\newcommand{\VTM}[2]{\ensuremath{\VectT{#1}\Mat{#2}}\xspace}
+\newcommand{\VTMT}[2]{\ensuremath{\VectT{#1}\MatT{#2}}\xspace}
+\newcommand{\MTV}[2]{\ensuremath{\MatT{#1}\Vect{#2}}\xspace}
+\newcommand{\MTVT}[2]{\ensuremath{\MatT{#1}\Vect{#2}}\xspace}
+\newcommand{\VMT}[2]{\ensuremath{\Vect{#1}\MatT{#2}}\xspace}
+\newcommand{\MVT}[2]{\ensuremath{\Mat{#1}\VectT{#2}}\xspace}
+\newcommand{\MV}[2]{\ensuremath{\Mat{#1}\Vect{#2}}\xspace}
+\newcommand{\VM}[2]{\ensuremath{\Vect{#1}\Mat{#2}}\xspace}
+
+
+\newcommand{\MTNdim}[4]{\ensuremath{\mathop{\MTN{#1}{#2}}\limits_{{[#3\times #4]}}}\xspace}
+\newcommand{\MTVdim}[4]{\ensuremath{\mathop{\MTV{#1}{#2}}\limits_{{[#3\times #4]}}}\xspace}
+\newcommand{\VTMdim}[4]{\ensuremath{\mathop{\MTV{#1}{#2}}\limits_{{[#3\times #4]}}}\xspace}
+
+\newcommand{\XTX}{\MTM{\X}}
+\newcommand{\XTY}{\ensuremath{\MatT{\X}\Vect{\Y}}\xspace}
+
+\newcommand{\InvMat}[1]{\ensuremath{{\Mat{#1}}^{-\!1}\!}\xspace}
+\newcommand{\InvMatP}[1]{\ensuremath{(\Mat{#1})^{-\!1}\!}\xspace}
+
+\newcommand{\InvMTM}[1]{\ensuremath{(\MTM{#1})^{-\!1}\!}\xspace}
+\newcommand{\InvXTX}{\ensuremath{\InvMTM{\X}}\xspace}
+
+\newcommand{\UTU}{\VTV{\ruido}}
+\newcommand{\ETE}{\VTV{\res}}
+
+
+
+%%% REGRESIÓN MCO (EXPRESIONES MATRICIALES)
+
+%% Regresión MCO #1 sobre #2
+\newcommand{\MCO}[2]{\ensuremath{\InvMTM{#2}\MTV{#2}{#1}}\xspace}
+%% Estimador MCO del regresando sobre el regresor
+\newcommand{\MCOd}{\MCO{\VA{\Y}}{\X}}  
+%% Estimación MCO del regresando sobre el regresor
+\newcommand{\MCOc}{\MCO{\Y}{\X}}  
+
+
+
+%%% SUMAS DE CUADRADOS (EXPRESIONES MATRICIALES)
+
+%% suma de residuos al cuadrado
+\newcommand{\SRC}{\VTV{\res}}
+%% suma total de cuadrados
+\newcommand{\STC}{\ensuremath{\VTV{\Y}-\TM\media{\Y}^2}\xspace}
+%% suma explicada de cuadrados
+\newcommand{\SEC}
+        {\ensuremath{\VTV{\Estmc{\Y}}
+        +\TM\media{\Y}^2
+        -2\TM\media{\Y}\media{\Estmc{\Y}}}
+        \xspace}
+%% suma explicada de cuadrados (cuando hay término constante)
+\newcommand{\SECcte}{\ensuremath{\VTV{\Estmc{\Y}}-\TM\media{\Y}^2}\xspace}
+
+%%% SUMAS DE CUADRADOS (NOTACIÓN)
+
+%% Estimadores
+\newcommand{\EstmdSRC}{\ensuremath{\Estm{\text{SRC}}{}}\xspace}
+\newcommand{\EstmdSTC}{\ensuremath{\Estm{\text{STC}}{}}\xspace}
+\newcommand{\EstmdSEC}{\ensuremath{\Estm{\text{SEC}}{}}\xspace}
+%% Estimaciones
+\newcommand{\EstmcSRC}{\ensuremath{\text{SRC}}\xspace}
+\newcommand{\EstmcSTC}{\ensuremath{\text{STC}}\xspace}
+\newcommand{\EstmcSEC}{\ensuremath{\text{SEC}}\xspace}
+
+%% COEFICIENTE DE DETERMINACIÓN
+
+% (NOTACIÓN)
+\newcommand{\EstmdRC}{\ensuremath{\Estm{R^2}{}}\xspace}
+\newcommand{\EstmcRC}{\ensuremath{R^2}\xspace}
+% (EXPRESIÓN MATRICIAL)
+\newcommand{\RC}{\ensuremath{1-\frac{\EstmdSRC}{\EstmdSTC}}\xspace}
+
+%% PREDICCIÓN
+\newcommand{\Predictor}[2]{\ensuremath{\Estm{#1}{#2}}\xspace}
+
+%% ÍNDICES
+\newcommand{\TM}{\ensuremath{N}\xspace}
+\newcommand{\Ind}{n}
+
+%% CONJUNTOS
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathbb F}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}

@@ -1,0 +1,21 @@
+\newcounter{Slide}
+\setcounter{Slide}{0}
+\mode<presentation>{\newenvironment{slide}{{\stepcounter{Slide}}\begin{frame}}{\end{frame}}}
+
+\mode<article>{\newenvironment{slide}{{\stepcounter{Slide}}
+    \par\addvspace{12pt}
+    \noindent
+    \begin{minipage}{.925\paperwidth}
+      \global\setbox0=\hbox\bgroup
+      \begin{minipage}[b]{.92\linewidth}\begin{frame}}{\hspace{\stretch{1}}{\tiny\framebox{F\insertframenumber}}\end{frame}\end{minipage}
+      \egroup
+      \noindent
+      \parbox{\linewidth}{\framebox{\box0}}
+    \end{minipage}
+    \par\addvspace{12pt}}}
+
+\mode<presentation>{\newcommand{\heading}[1]{\frametitle{\framebox{\small\color{red}\textbf{\theSlide}}\ {\small #1}}}}
+\mode<article>{\nopagebreak[4]\newcommand{\heading}[1]{{\centering\frametitle{\color{gray}{(\footnotesize \eng{Lección}{Lecture} \theLectureN) \qquad} \framebox{\color{gray}{\eng{T}{S}-}\color{red}\textbf{\theSlide}}\ \color{gray}{#1}}} \vspace{2pt}}}
+
+\newcommand{\headingsub}[2]{\heading{#1:\ #2}}
+

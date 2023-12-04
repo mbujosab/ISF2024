@@ -1,0 +1,71 @@
+%% DEFINIENDO SIMBOLOS Y NOTACION
+\usepackage{xspace}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%  tic
+\newcommand{\xmark}{\ding{55}}%  cruz
+
+%% rayita cortita para el "-1" de las inversas
+\usepackage{xparse}% http://ctan.org/pkg/xparse
+\makeatletter
+\NewDocumentCommand{\raisedminus}{m}{%
+  \raisebox{0.1em}{$\m@th#1{-}$}%
+}
+\NewDocumentCommand{\unaryminus}{}{%
+  \mathbin{%
+    \mathchoice{%
+      \raisedminus\scriptstyle
+    }{%
+      \raisedminus\scriptstyle
+    }{%
+      \raisedminus\scriptscriptstyle
+    }{%
+      \raisedminus\scriptscriptstyle
+    }%
+  }%
+}
+\makeatother
+\NewDocumentCommand{\zinv}{}{{\!z\!\!^{\unaryminus \!1}\!}}
+
+
+\usepackage{mathrsfs} % letras bonitas
+% espacio de probabilidad
+\newcommand{\probspace}{(S,\mathscr{B},P)} 
+% ruido blanco
+\newcommand{\ruido}{\mathrm{w}\xspace} 
+% funciÃ³n de autocovarianzas
+%\newcommand{\acgf}[1]{\ensuremath{{\Gamma}_{\!\!{\scriptscriptstyle\boldsymbol{#1}}}}\xspace}
+\newcommand{\acgf}[1]{\ensuremath{{\Gamma}_{\!{\scriptscriptstyle{#1}}}}\xspace}
+% funciÃ³n de pseudo-covarianzas
+%\newcommand{\pcgf}[2]{\ensuremath{{\Gamma}_{\!\!{\scriptscriptstyle\boldsymbol{#1}\!,\boldsymbol{#2}}}}\xspace}
+\newcommand{\pcgf}[2]{\ensuremath{{\Gamma}_{\!{\scriptscriptstyle{#1}},{\scriptscriptstyle{#2}}}}\xspace}
+% operador retardo y adelanto
+\newcommand{\lag}{\ensuremath{B}\xspace}
+\newcommand{\forw}{\ensuremath{F}\xspace}
+% producto escalar
+\newcommand{\esc}[2]{\left<{#1},{#2}\right>}
+% producto convoluciÃ³n
+\newcommand{\conv}{*}
+% Hilbert basis
+\newcommand{\HB}{\mathcal{D}\xspace}
+% elemento de la base
+\newcommand{\eb}{d} 
+% espacio vectorial
+\newcommand{\EV}{L(\HB)\xspace}
+% dual espacio vectorial
+\newcommand{\DEV}{\EV^*\xspace}
+% conjuntos de nÃºmeros
+\newcommand{\Cc}{\mathbb{C}} % complejos
+\newcommand{\Rr}{\mathbb{R}} % reales
+\newcommand{\Zz}{\mathbb{Z}} % enteros
+% transformada
+\newcommand{\transf}[1]{\ensuremath{\mathcal{#1}}\xspace}
+%\endlocaldefs
+
+%%triangulitos  pa...lante pa...tras
+\usepackage{MnSymbol}
+\newcommand{\atras}{\ensuremath{\smalltriangleright}\!\xspace}
+\newcommand{\adelante}{\ensuremath{\!\filledtriangleleft}\xspace}
+
+\newcommand{\pse}{pseudo-spectrum\xspace}%{{\em pseudo-espectro \/}}
+\newcommand{\pses}{pseudo-spectra\xspace}%{{\em pseudo-espectro \/}}

@@ -4,10 +4,16 @@
 
 Aquí iré colocando el material
 
-- CET :: estimaciones
-  - [[https://github.com/mbujosab/ISF2024/blob/master/Notebooks/CET.ipynb][Notebook CET]]
-  - Para ejecutar el notebook en un navegador: [[https://mybinder.org/v2/gh/mbujosab/ISF2024/HEAD?labpath=Notebooks][file:Notebooks/images/badge_logo.svg]]
-  - Notebook transformado en pdf [[file:./CET.pdf][CET.pdf]]
-  - [[file:./Notebooks/CET2008/Climate01-screen.pdf][Presentación de 2008]]
+** Presentación
+
+- Versión [[file:./Slides/ISF2024-AGF-MB-screen.pdf][screen]]
+- Versión [[file:./Slides/ISF2024-AGF-MB-print.pdf][print]]
+
+** Cálculos para la presentación
+*** Central England Temperatures
+- [[https://github.com/mbujosab/ISF2024/blob/master/Notebooks/CET.ipynb][Notebook CET]]
+- Para ejecutar el notebook en un navegador: [[https://mybinder.org/v2/gh/mbujosab/ISF2024/HEAD?labpath=Notebooks][file:Notebooks/images/badge_logo.svg]]
+- Notebook transformado en pdf [[file:./CET.pdf][CET.pdf]]
+- [[file:./Notebooks/CET2008/Climate01-screen.pdf][Presentación de 2008]]
     
     

@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{pgfcalendar}
+\usepackage{pgfplotstable}
+\usetikzlibrary{pgfplots.dateplot}
+\usepgfplotslibrary{dateplot}
+
+\providecommand{\plotdataDir}{./}
+
+% File content zeiten_float.dat
+%   datum kommt geht
+%   2016-01-04 6.30 16.10
+%   2016-01-05 6.40 16.20
+%   2016-01-07 6.20 16.30
+%   2016-01-08 6.10 16.40
+%   2016-01-11 6.30 16.50
+%   2016-01-12 6.50 16.10
+%   2016-01-13 6.40 16.20
+%   2016-01-14 6.10 16.30
+\begin{document}
+  \begin{tikzpicture}
+  \matrix{
+        \begin{axis}[
+            date coordinates in=x,
+            xticklabel={\day.\month.}
+            ]
+            \addplot table[x=YEARS,y=GTA] {\plotdataDir/datos.dat};
+            \addplot table[x=YEARS,y=TRF]  {\plotdataDir/datos.dat};
+        \end{axis}}
+    \end{tikzpicture}
+\end{document}

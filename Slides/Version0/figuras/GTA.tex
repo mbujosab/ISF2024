@@ -1,0 +1,93 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[latin1]{inputenc}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{plotmarks}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{filecontents}
+
+% \pgfplotsset{
+%     % a style which generates ticks for each year in '#1' to #2
+%     % (inclusive), at day '#3'.
+%     monthly ticks/.code args={#1#2#3}{%
+%         \xdef\accum{}%
+%         \foreach \year in {#1,...,#2} {%
+%             %
+%             % append a comma if it is not empty:
+%             \ifx\accum\empty
+%             \else
+%                 \xdef\accum{\accum,}%
+%             \fi
+%             %
+%             % append the next year:
+%             %\xdef\accum{\accum\year-01-#3,\year-02-#3,\year-...-#3,\year-12-#3}%
+%             %\xdef\accum{\accum\year-01-01,\year-02-01,\year-...-01,\year-12-01}%
+%             \xdef\accum{\accum\year-01-01}%,\year-02-01,\year-...-01,\year-12-01}%
+%         }%
+%         \message{Using monthly ticks=\accum^^J}%
+%         \pgfkeysalso{/pgfplots/xtick/.expand once={\accum}}%
+%     }%
+% }
+
+\pgfplotsset{
+    % a style which generates ticks for each year in '#1' to #2
+    % (inclusive), at day '#3'.
+    lustro ticks/.code args={#1}{%
+        \xdef\accum{}%
+        \foreach \year in {1860,1865,1870,1875,1880,1885,1890,1895,1900,1905,1910,1915,1920,1925,1930,1935,1940,1945,1950,1955,1960,1965,1970,1975,1980,1985,1990,1995,2000,2005,2010,2015} {%
+            %
+            % append a comma if it is not empty:
+            \ifx\accum\empty
+            \else
+                \xdef\accum{\accum,}%
+            \fi
+            %
+            % append the next year:
+            %\xdef\accum{\accum\year-01-#3,\year-02-#3,\year-...-#3,\year-12-#3}%
+            %\xdef\accum{\accum\year-01-01,\year-02-01,\year-...-01,\year-12-01}%
+            \xdef\accum{\accum\year-01-01}%,\year-02-01,\year-...-01,\year-12-01}%
+        }%
+        \message{Using monthly ticks=\accum^^J}%
+        \pgfkeysalso{/pgfplots/xtick/.expand once={\accum}}%
+    }%
+}
+
+\usepackage{pgfcalendar}
+\usepackage{pgfplotstable}
+\usetikzlibrary{pgfplots.dateplot}
+\usepgfplotslibrary{dateplot}
+
+\usepgfplotslibrary{fillbetween}
+
+\providecommand{\plotdataDir}{./}
+%\pgfplotsset{compat=1.15}
+
+
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+%\setlength\PreviewBorder{\gpbboxborder}
+
+\begin{document}
+
+\pagestyle{empty}
+\begin{tikzpicture}
+  \begin{axis}[width=10cm,  height=4cm, ytick pos=left, date coordinates in=x,xticklabel={\tiny \year},x tick label style={rotate=45,anchor=north east},xmin=1855-06-01, xmax=2015-12-01,xmajorgrids=true,grid style=dashed,axis on top, lustro ticks={1},
+    y tick label style={
+      /pgf/number format/.cd,
+      fixed,
+      fixed zerofill,
+      precision=1,
+      /tikz/.cd
+    },]
+    % \addplot[blue] table[x="YEARS",y=AP]     {\plotdataDir/datos.dat};
+    \addplot[red!70!black,thick] table[x=YEARS,y=GTA]     {\plotdataDir/datos.dat};
+  \end{axis} 
+\end{tikzpicture}
+
+\end{document}

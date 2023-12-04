@@ -1,0 +1,22 @@
+%% 54 *43* 32 149 1610 169
+
+\documentclass[mathserif,aspectratio=43]{beamer} \mode<presentation>
+
+\useoutertheme[subsection=false, footline=empty]{miniframes}
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamertemplate{section in head/foot shaded}{\color{gray}\usebeamertemplate{section in head/foot}}
+
+\setbeamertemplate{headline}{%
+  \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}{section in head/foot}
+    \vskip2pt\insertsectionnavigationhorizontal{\paperwidth}{}{}\vskip2pt
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+  \end{beamercolorbox}
+}
+
+\setbeamercovered{%
+  still covered={\opaqueness<1>{12}\opaqueness<2>{6}\opaqueness<3>{3}\opaqueness<4->{0}},
+  again covered={\opaqueness<1->{25}}}

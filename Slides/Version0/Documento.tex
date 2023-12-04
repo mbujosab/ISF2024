@@ -1,0 +1,95 @@
+
+%% ESTO NO SE PA QUE ES... LO COMENTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\RequirePackage{atbegshi}
+
+\newcommand\Wider[2][0em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
+% \renewcommand\ocgtext[3][0pt]{\leavevmode #2}
+%\renewcommand\ocgtext[3][0pt]{#2}
+
+\usepackage{bookmark}
+
+
+\usepackage{setspace}
+\let\oldfootnote\footnote
+\renewcommand\footnote[2][]{{\linespread{1}\oldfootnote[#1]{#2}}}
+\linespread{1}
+
+\mode<article>{     \newcommand{\fijaAnchura}[2]{#1\textwidth}}
+\mode<presentation>{\newcommand{\fijaAnchura}[2]{#2\textwidth}}
+
+\usepackage{xmpmulti,amsmath,amssymb,graphicx,mflogo}
+\DeclareGraphicsRule{*}{mps}{*}{}
+\graphicspath{{./figuras/}}
+
+\newcommand\HIDBM{\ocgtext[10cm,bg=lightgray,fg=darkgreen]{HI-DBM\xspace}{
+    \textbf{Hypothetico-inductive DBM modeling procedure (HI-DBM)}
+    \\[12pt]
+    \emph{``data-based inductive procedure\dots with both
+      the model structure and the parameters that characterize this
+      structure \HLa{inferred from\dots data}''}
+    \\[12pt]
+    \emph{``\HLa{the model \dots should also have a clear, scientifically
+      acceptable, mechanistic interpretation.}''}
+    \\[12pt]
+    \emph{``\dots it is an '\HLa{\textsc{art and craft}}'\dots ''}
+    % \\[12pt]
+    % \emph{``a model should not just explain the time series data well,
+    %   it should also provide a mechanistic description of the system
+    %   under investigation.''}
+  }}
+
+\newcommand\TRF{\ocgminitext[7cm,bg=lightgray,fg=darkgreen]{TRF\xspace{}}{
+    \HLa{\textbf{Total Radiative Forcing (TRF)}}
+    \\[6pt]
+    
+    \emph{Radiative forcing} is the change in energy flux in the
+    atmosphere caused by natural or anthropogenic factors of climate
+    change as measured by $watts/metre^2$.
+    \\[6pt]
+
+    \textbf{TRF} is the summation of all the radiative forcing
+    components, including those caused by greenhouse gases, aerosols
+    and volcanic activity, that affect global surface temperature.    
+  }}
+
+\newcommand\GTA{\ocgminitext[7cm,bg=lightgray,fg=darkgreen]{GTA\xspace{}}{
+    \HLa{\textbf{Globally Averaged Temperature Anomaly (GTA)}}
+    \\[6pt]
+    \textbf{GTA} represents the changes in the globally averaged
+    surface temperature around a level defined by the background
+    average of the temperature measurements over the period 1951 to
+    1980.
+    \\[6pt]
+    %Temperature anomaly means a departure from a reference value or
+    %long-term average.
+    A positive anomaly indicates that the observed temperature was
+    warmer than the reference value.
+    % \\[6pt]
+    % \textbf{GTA} is a global-scale climate diagnostic tool and
+    % provides a big picture overview of average global temperatures
+    % compared to a reference value.
+  }}
+
+\newcommand\AMO{\ocgminitext[7cm,bg=lightgray,fg=darkgreen]{AMO\xspace{}}{
+    \HLa{\textbf{Atlantic Multidecadal Oscillation (AMO)}}
+    \\[6pt]    
+    \textbf{AMO}: variability in the North Atlantic \emph{once a linear
+    trend has been removed}.
+    \\[6pt]    
+    This detrending is intended to remove the influence of greenhouse
+    gas-induced global warming from the analysis.}}
+
+
+\begin{document}
+\maketitle
+
+\input{texto.tex}
+
+\end{document}

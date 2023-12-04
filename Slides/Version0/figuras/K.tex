@@ -1,0 +1,84 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[latin1]{inputenc}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{plotmarks}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{filecontents}
+
+\pgfplotsset{
+    % a style which generates ticks for each year in '#1' to #2
+    % (inclusive), at day '#3'.
+    monthly ticks/.code args={#1#2#3}{%
+        \xdef\accum{}%
+        \foreach \year in {#1,...,#2} {%
+            %
+            % append a comma if it is not empty:
+            \ifx\accum\empty
+            \else
+                \xdef\accum{\accum,}%
+            \fi
+            %
+            % append the next year:
+            %\xdef\accum{\accum\year-01-#3,\year-02-#3,\year-...-#3,\year-12-#3}%
+            %\xdef\accum{\accum\year-01-01,\year-02-01,\year-...-01,\year-12-01}%
+            \xdef\accum{\accum\year-01-01}%,\year-02-01,\year-...-01,\year-12-01}%
+        }%
+        \message{Using monthly ticks=\accum^^J}%
+        \pgfkeysalso{/pgfplots/xtick/.expand once={\accum}}%
+    }%
+}
+
+\usepackage{pgfcalendar}
+\usepackage{pgfplotstable}
+\usetikzlibrary{pgfplots.dateplot}
+\usepgfplotslibrary{dateplot}
+
+\usepgfplotslibrary{fillbetween}
+
+\providecommand{\plotdataDir}{./}
+%\pgfplotsset{compat=1.15}
+
+
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+%\setlength\PreviewBorder{\gpbboxborder}
+
+\begin{document}
+
+\pagestyle{empty}
+  \begin{tikzpicture}
+    \matrix{
+      \begin{axis}[width=8.5cm,  height=5.7cm, ytick pos=left, date coordinates in=x,xticklabel={\tiny \year},x tick label style={rotate=45,anchor=north east},xmin=1948-11-01, xmax=1961-01-31,xmajorgrids=true,grid style=dashed,axis on top,title={\small Trendencia (${\color{red!70!black} T}$)},monthly ticks={1949}{1961}{01}]
+        \fill [gray!20] (axis cs:1992-05-1,-22) rectangle (axis cs:1994-02-1,120);
+        \fill [gray!20] (axis cs:2008-03-1,-22) rectangle (axis cs:2010-02-1,120);
+        \fill [gray!20] (axis cs:2011-06-1,-22) rectangle (axis cs:2013-08-1,120);
+        \addplot[blue] table[x=obs,y=AP]     {\plotdataDir/APcomp.dat};
+        \addplot[red!70!black,thick] table[x=obs,y=APtrend]     {\plotdataDir/APcomp.dat};
+      \end{axis} 
+      \\
+      \begin{axis}[width=8.5cm,  height=5.7cm, ytick pos=left, date coordinates in=x,xticklabel={\tiny \year},x tick label style={rotate=45,anchor=north east},xmin=1948-11-01, xmax=1961-01-31,xmajorgrids=true,grid style=dashed,axis on top,title={\small Componente estacional (${\color{red!70!black} S}$)},monthly ticks={1949}{1961}{01}]
+        \fill [gray!20] (axis cs:1992-05-1,-22) rectangle (axis cs:1994-02-1,120);
+        \fill [gray!20] (axis cs:2008-03-1,-22) rectangle (axis cs:2010-02-1,120);
+        \fill [gray!20] (axis cs:2011-06-1,-22) rectangle (axis cs:2013-08-1,120);
+
+        \addplot[red!70!black] table[x=obs,y=APseason] {\plotdataDir/APcomp.dat};
+
+      \end{axis} 
+      \\
+      \begin{axis}[width=8.5cm,  height=5.7cm, ytick pos=left, date coordinates in=x,xticklabel={\tiny \year},x tick label style={rotate=45,anchor=north east},xmin=1948-11-01, xmax=1961-01-31,xmajorgrids=true,grid style=dashed,axis on top,title={\small Componente irregular $({\color{red!70!black} I})$},monthly ticks={1949}{1961}{01}]
+        \fill [gray!20] (axis cs:1992-05-1,-22) rectangle (axis cs:1994-02-1,120);
+        \fill [gray!20] (axis cs:2008-03-1,-22) rectangle (axis cs:2010-02-1,120);
+        \fill [gray!20] (axis cs:2011-06-1,-22) rectangle (axis cs:2013-08-1,120);
+        \addplot[red!70!black] table[x=obs,y=APirreg]      {\plotdataDir/APcomp.dat};
+      \end{axis}
+      \\
+    };
+  \end{tikzpicture}
+\end{document}

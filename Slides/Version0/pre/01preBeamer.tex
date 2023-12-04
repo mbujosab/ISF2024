@@ -1,0 +1,44 @@
+
+%\usetheme{Warsaw}
+%\usetheme{Szeged}
+\usetheme{Singapore}
+%\usetheme{PaloAlto}
+%\usetheme{Marburg}
+%\usetheme{Madrid}
+%\usetheme{Goettingen}
+%\usetheme{CambridgeUS}
+
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{theorem begin}
+{%
+  \begin{\inserttheoremblockenv}
+    {%
+      \inserttheoremheadfont
+      \inserttheoremname
+      \ifx\inserttheoremaddition\@empty\else\ \inserttheoremaddition\fi%
+      % \inserttheorempunctuation
+    }%
+  }
+  \setbeamertemplate{theorem end}{\end{\inserttheoremblockenv}}
+\makeatother
+
+\usepackage{xparse}% http://ctan.org/pkg/xparse
+% \ref* para el beamer
+\makeatletter
+\NewDocumentCommand{\reff}{s m}{%
+  \IfBooleanTF{#1}% Check for starred variant
+    {\beamer@origref{#2}}% \reff*
+    {\hyperlink{#2}{\beamer@origref{#2}}}% \reff
+}
+\makeatother
+
+%% ITEMIZE MAS SEPARADO
+%\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{10pt}}{\enditemize}
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{\stretch{1}}}{\enditemize}
+
+%\setbeamercolor{frametitle}{fg=violet}
+%\addtobeamertemplate{frametitle}{\vskip-1.9ex}{}
+\addtobeamertemplate{frametitle}{\vskip-.9ex}{}
+

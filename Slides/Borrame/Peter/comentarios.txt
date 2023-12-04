@@ -1,0 +1,10 @@
+Dear Peter,
+
+thank you once again for sending me your articles.  
+
+Unfortunately, I have not been able to download the climate data. On the one hand, I don't know which database I should download from http://www.pik-potsdam.de/~mmalte/rcps/. On the other hand, the two links http://cdiac.ornl.gov/trends/temp/jonescru/jones.html and http://www.cgd.ucar.educas/catalog/climind/AMO.html do not work on my PC. Also, the link http://captaintoolbox.co.uk/Captain_Toolbox.html/Publication_Downloads.html does not work on my PC either (sorry). 
+
+So could you please send me the data? Maybe I could do some tests with my LDHR code and then send you my feedback several days before the workshop.
+
+Fortunately, I have read the article for the workshop. But I have some difficulties to understand some issues (maybe some of them are due to some typos --- see below). 
+

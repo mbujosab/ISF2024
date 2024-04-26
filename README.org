@@ -18,4 +18,5 @@ Enlace a la descripción del contenido en versión [[https://mbujosab.github.io/
 - Notebook transformado en pdf [[file:./CET.pdf][CET.pdf]]
 - [[file:./Notebooks/CET2008/Climate01-screen.pdf][Presentación de 2008]]
     
-    
+*** Covid 19
+- [[https://forecasters.org/blog/2020/05/07/forecasting-covid-19-daily-outcomes-with-simple-transfer-function-models/][forecasters.org/blog]]

@@ -1,0 +1,125 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[latin1]{inputenc}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{plotmarks}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{filecontents}
+
+\pgfplotsset{
+    % a style which generates ticks for each year in '#1' to #2
+    % (inclusive), at day '#3'.
+  lustro ticks/.code args={#1}{%
+    \xdef\accum{}%
+    \foreach \year in { 1675, 1700, 1725, 1750, 1775, 1800, 1825,
+      1850, 1875, 1900, 1925, 1950, 1975, 2000, 2025}{%
+            %
+            % append a comma if it is not empty:
+            \ifx\accum\empty
+            \else
+                \xdef\accum{\accum,}%
+            \fi
+            %
+            % append the next year:
+            %\xdef\accum{\accum\year-01-#3,\year-02-#3,\year-...-#3,\year-12-#3}%
+            %\xdef\accum{\accum\year-01-01,\year-02-01,\year-...-01,\year-12-01}%
+            \xdef\accum{\accum\year-06-01}%,\year-02-01,\year-...-01,\year-12-01}%
+        }%
+        \message{Using monthly ticks=\accum^^J}%
+        \pgfkeysalso{/pgfplots/xtick/.expand once={\accum}}%
+    }%
+}
+
+% \pgfplotsset{
+%     % a style which generates ticks for each year in '#1' to #2
+%     % (inclusive), at day '#3'.
+%     monthly ticks/.code args={#1#2#3}{%
+%         \xdef\accum{}%
+%         \foreach \year in {#1,...,#2} {%
+%             %
+%             % append a comma if it is not empty:
+%             \ifx\accum\empty
+%             \else
+%                 \xdef\accum{\accum,}%
+%             \fi
+%             %
+%             % append the next year:
+%             %\xdef\accum{\accum\year-01-#3,\year-02-#3,\year-...-#3,\year-12-#3}%
+%             %\xdef\accum{\accum\year-01-01,\year-02-01,\year-...-01,\year-12-01}%
+%             \xdef\accum{\accum\year-01-01}%,\year-02-01,\year-...-01,\year-12-01}%
+%         }%
+%         \message{Using monthly ticks=\accum^^J}%
+%         \pgfkeysalso{/pgfplots/xtick/.expand once={\accum}}%
+%     }%
+% }
+
+\usepackage{pgfcalendar}
+\usepackage{pgfplotstable}
+\usetikzlibrary{pgfplots.dateplot}
+\usepgfplotslibrary{dateplot}
+
+\usepgfplotslibrary{fillbetween}
+
+\providecommand{\plotdataDir}{.}
+%\pgfplotsset{compat=1.15}
+
+
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+%\setlength\PreviewBorder{\gpbboxborder}
+
+\begin{document}
+
+\pagestyle{empty}
+
+  \begin{tikzpicture}
+    % \begin{axis}[      
+    %   width=10cm,  height=4cm, 
+    %   xticklabel style={/pgf/number format/set thousands separator={}},
+    %   legend pos=south east,
+    %   xmajorgrids,
+    %   xmin=1656,
+    %   xmax=2026,
+    %   ymin=6.8,
+    %   ymax=11.2,
+    %   xticklabel={\tiny \year},
+    %   x tick label style={rotate=45,anchor=north east}
+    %   ]
+    \begin{axis}[
+      width=10cm,
+      height=4cm,
+      ytick pos=left,
+      date coordinates in=x,
+      xticklabel={\tiny \year},
+      %x tick label style={rotate=45,anchor=north east},
+      xmin=1658-06-01,
+      xmax=2024-06-01,
+      xmajorgrids=true,
+      grid style=dashed,
+      axis on top,
+      lustro ticks={1},
+       y tick label style={
+         /pgf/number format/.cd,
+         fixed,
+         fixed zerofill,
+         precision=1,
+         /tikz/.cd
+       },
+      ymin=-0.055,
+      ymax= 0.065,
+      ]
+      \fill [gray!20] (axis cs:2007-06-01,-0.25) rectangle (axis cs:2024-06-01,0.25);
+      
+      \addplot[thin,red!50!black] table[x=date,y=diffSRWtrend] {\plotdataDir/difftrends.csv};
+      %\addplot[thin,black] table[x=date,y=diffIRWtrend] {\plotdataDir/difftrends.csv};
+      \draw[ultra thin] (axis cs:1660-06-01,0) -- (axis cs:2024-06-01,0);
+    \end{axis}
+  \end{tikzpicture}  
+
+\end{document}

@@ -93,7 +93,7 @@
     %   ]
     \begin{axis}[
       width=10cm,
-      height=4cm,
+      height=4.5cm,
       ytick pos=left,
       date coordinates in=x,
       xticklabel={\tiny \year},
@@ -103,6 +103,7 @@
       xmajorgrids=true,
       grid style=dashed,
       axis on top,
+      legend pos=south east,
       lustro ticks={1},
        y tick label style={
          /pgf/number format/.cd,
@@ -118,6 +119,8 @@
       
       %\addplot[thin,red!50!black] table[x=date,y=diffSRWtrend] {\plotdataDir/difftrends.csv};
       \addplot[thin,black] table[x=date,y=diffIRWtrend] {\plotdataDir/difftrends.csv};
+      \addlegendentry{\small $\nabla$ IRW trend}
+
       \draw[ultra thin] (axis cs:1660-06-01,0) -- (axis cs:2024-06-01,0);
     \end{axis}
   \end{tikzpicture}  

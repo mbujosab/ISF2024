@@ -38,41 +38,6 @@
 \end{slide}
 
 
-\begin{slide}
-  \heading{Dynamic Harmonic Regression Model}
-
-  The {DHR} model consists of several unobserved components plus an
-  irregular stationary zero mean component
-  $\,{\boldsymbol{e}}=\{e_{t}\}_{t\in\mathbb{Z}}\,$
-  \begin{equation}
-    \boldsymbol{y}\;=\;\sum_{j=0}^{R}\boldsymbol{s}^{j}\;+\;\boldsymbol{e}.
-  \end{equation}
-  \begin{itemize}
-  \item {DHR} components
-    \;$\boldsymbol{s}^{j}\;=\;\{s_{t}^{j}\}_{t\in\mathbb{Z}}\,$\; are
-    oscillatory
-    \begin{equation}
-      s_{t}^{j}\; =\; a_{t}^{j}\cos(\omega_{j}t)+b_{t}^{j}\sin(\omega_{j}t),
-    \end{equation}
-    where frequency $\omega_{j}$ is associated to the $j$-th component.
-  \item Oscillations are modulated by two {GRW} processes 
-    \;$\boldsymbol{a}^{j} = \{a^{j}_t\}_{t\in\mathbb{Z}}$\; and
-    \;$\boldsymbol{b}^{j} = \{b^{j}_t\}_{t\in\mathbb{Z}}$.
-  \item $\omega_{0}=0$ corresponds to the trend (or zero frequency
-    term).
-  \item The model is fitted in the frequency domain.
-  \end{itemize}
-  % are either {RW}
-  % processes (and we say that the corresponding {DHR} component,
-  % $\boldsymbol{s}^{j}$, follows a RW model) or both are AR(2) processes
-  % \emph{with at least one unit root} (when both roots are 1 we say that
-  % $\boldsymbol{s}^{j}$ follows an {IRW}; and when one of the roots is
-  % less than 1 in absolute value we say $\boldsymbol{s}^{j}$ follows a
-  % {SRW}).
-  % the
-  % other components ($j=1,...,R$) correspond to the seasonal frequency
-  % and its harmonics.
-\end{slide}
 
 \section[Exercise]{Small empirical exercise}
 
@@ -117,6 +82,42 @@
   \vspace{\stretch{1}}
 
   Disclaimer and explanation of the posterior empirical results
+\end{slide}
+
+\begin{slide}
+  \heading{Dynamic Harmonic Regression Model}
+
+  The {DHR} model consists of several unobserved components plus an
+  irregular stationary zero mean component
+  $\,{\boldsymbol{e}}=\{e_{t}\}_{t\in\mathbb{Z}}\,$
+  \begin{equation}
+    \boldsymbol{y}\;=\;\sum_{j=0}^{R}\boldsymbol{s}^{j}\;+\;\boldsymbol{e}.
+  \end{equation}
+  \begin{itemize}
+  \item {DHR} components
+    \;$\boldsymbol{s}^{j}\;=\;\{s_{t}^{j}\}_{t\in\mathbb{Z}}\,$\; are
+    oscillatory
+    \begin{equation}
+      s_{t}^{j}\; =\; a_{t}^{j}\cos(\omega_{j}t)+b_{t}^{j}\sin(\omega_{j}t),
+    \end{equation}
+    where frequency $\omega_{j}$ is associated to the $j$-th component.
+  \item Oscillations are modulated by two {\GRW} processes 
+    \;$\boldsymbol{a}^{j} = \{a^{j}_t\}_{t\in\mathbb{Z}}$\; and
+    \;$\boldsymbol{b}^{j} = \{b^{j}_t\}_{t\in\mathbb{Z}}$.
+  \item $\omega_{0}=0$ corresponds to the trend (or zero frequency
+    term).
+  \item The model is fitted in the frequency domain.
+  \end{itemize}
+  % are either {RW}
+  % processes (and we say that the corresponding {DHR} component,
+  % $\boldsymbol{s}^{j}$, follows a RW model) or both are AR(2) processes
+  % \emph{with at least one unit root} (when both roots are 1 we say that
+  % $\boldsymbol{s}^{j}$ follows an {IRW}; and when one of the roots is
+  % less than 1 in absolute value we say $\boldsymbol{s}^{j}$ follows a
+  % {SRW}).
+  % the
+  % other components ($j=1,...,R$) correspond to the seasonal frequency
+  % and its harmonics.
 \end{slide}
 
 \begin{slide}
@@ -232,7 +233,7 @@
 
 \section[Climate 1]{The Central England Temperature (CET)}
 \begin{slide}
-  \heading{The Central England Temperature (CET)}  
+  \heading{The Central England Temperature 1659--2007  (CET)}  
   \begin{center}
     \resizebox{\fijaAnchura{.98}{.8}}{!}{\includegraphics{serie.png}}
   \end{center}
@@ -263,6 +264,7 @@
   \end{center} 
 \end{slide}
 
+% https://unchartedterritory.wordpress.com/2010/03/06/1740-and-all-that/
 
 \section[Climate 2]{Modelling of Global Climate Change}
 \begin{slide}

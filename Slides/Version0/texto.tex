@@ -212,6 +212,9 @@
 \begin{slide}
   \heading{Hodrick–Prescott filter}
 
+  \citet{Hodrick:nwu-cmsems-451, Hodrick:JMCB-29-1, whittaker1922new}
+  \vspace{\stretch{1}}
+  
   \begin{center}
     \large
     \begin{math}
@@ -221,7 +224,12 @@
   Given a positive $\lambda$, there is a trend component $\mathbf{\tau}$ that solves
   \begin{displaymath}
     \min_{\tau}\left(\sum_{t = 1}^T {(y_t - \tau _t )^2 }  + \lambda \sum_{t = 2}^{T - 1} {[(\tau _{t+1}  - \tau _t) - (\tau _t  - \tau _{t - 1} )]^2 }\right)
-  \end{displaymath}  
+  \end{displaymath}
+  \vspace{\stretch{1}}
+  
+  \begin{center}
+    \fbox{Why $\lambda=1600$?}
+  \end{center}
 \end{slide}
 
 \begin{slide}
@@ -229,6 +237,20 @@
   \begin{center}
     \resizebox{\fijaAnchura{.98}{.9}}{!}{\includegraphics{SinNombre.png}}
   \end{center}
+\end{slide}
+
+\begin{slide}
+  \heading{Why You Should Never Use the Hodrick-Prescott Filter \citep{Hamilton:RES-100-831}}
+  \begin{center}
+    \resizebox{\fijaAnchura{.98}{.99}}{!}{\includegraphics{Figura 2_hamilton.png}}
+  \end{center}  
+\end{slide}
+
+\begin{slide}
+  \heading{Why You Should Never Use the Hodrick-Prescott Filter  \citep{Hamilton:RES-100-831}}
+  \begin{center}
+    \resizebox{\fijaAnchura{.98}{.99}}{!}{\includegraphics{Figura 3_hamilton.png}}
+  \end{center}  
 \end{slide}
 
 \section[Climate 1]{The Central England Temperature (CET)}
@@ -242,6 +264,8 @@
   \begin{center}
     \resizebox{\fijaAnchura{.98}{.8}}{!}{\includegraphics{derivadas.png}}
   \end{center}
+  
+  \citep{Garcia-Ferrer:Environmetrics2013,Garcia-Ferrer:ISF2008}
 \end{slide}
 
 \begin{slide}
@@ -268,7 +292,7 @@
 
 \section[Climate 2]{Modelling of Global Climate Change}
 \begin{slide}
-  \heading{Modelling of Global Climate Change}
+  \heading{Modelling of Global Climate Change \citep{Young_2021}}
   \begin{center}
     {\footnotesize Global Temperature Anomaly (\GTA)}\\
     \resizebox{\fijaAnchura{.98}{.97}}{!}{\includegraphics{./figuras/GTA.pdf}}\\
@@ -276,7 +300,7 @@
     %\resizebox{\fijaAnchura{.98}{.97}}{!}{\includegraphics{./figuras/TRF.pdf}}\\
     {\footnotesize Atlantic Multidecadal Oscillation (\AMO)}\\
     \resizebox{\fijaAnchura{.98}{.97}}{!}{\includegraphics{./figuras/AMO.pdf}}
-  \end{center} 
+  \end{center}
 \end{slide}
 
 \begin{slide}
@@ -356,6 +380,13 @@
   \end{center}
 \end{slide}
 
+
+\begin{slide}
+  \heading{Coronavirus trajectories}
+  \begin{center}
+    \resizebox{\fijaAnchura{.9}{.9}}{!}{\includegraphics{./figuras/coronavirus_world.jpg}} 
+  \end{center}
+\end{slide}
 
 % \section[CET]{Mean Central England Temperature}
 % \begin{slide}
